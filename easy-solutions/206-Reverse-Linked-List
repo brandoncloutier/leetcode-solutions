@@ -22,3 +22,39 @@ var reverseList = function(head) {
 
     return last;
 };
+
+/**
+ * REVERSING USING RECURSION
+ */
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseNodePointer = function(prev, node) {
+    let tail;
+    if (node.next) {
+        tail = reverseNodePointer(node, node.next)
+    }
+
+    node.next = prev;
+    if (tail) {
+        return tail
+    } else {
+        return node
+    }
+}
+
+var reverseList = function(head) {
+    if (!head) {
+        return head
+    }
+    const newHead = reverseNodePointer(null, head);
+    return newHead
+};
