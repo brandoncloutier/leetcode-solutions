@@ -27,6 +27,7 @@ var reverseList = function(head) {
  * REVERSING USING RECURSION
  */
 /**
+/**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
  *     this.val = (val===undefined ? 0 : val)
@@ -38,17 +39,13 @@ var reverseList = function(head) {
  * @return {ListNode}
  */
 var reverseNodePointer = function(prev, node) {
-    let tail;
-    if (node.next) {
-        tail = reverseNodePointer(node, node.next)
+    if (!node.next) {
+        node.next = prev;
+        return node;
     }
-
+    let tail = reverseNodePointer(node, node.next)
     node.next = prev;
-    if (tail) {
-        return tail
-    } else {
-        return node
-    }
+    return tail;
 }
 
 var reverseList = function(head) {
