@@ -125,3 +125,60 @@ var sortArray = function(nums) {
  * in one array than we know that all the elements left in the other are already in order so we just push
  * the rest of the elements.
  */
+
+/**
+ * Solution 3: Quick Sort
+ */
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var quickSort = function(nums, start, end) {
+
+  // Base Case
+  if (start >= end) return nums;
+  //
+  let pivot = end;
+  let swapPtr = start;
+  let iterationPtr = start;
+
+  // swap everything before pivot
+  while (iterationPtr < pivot) {
+      if (nums[iterationPtr] <= nums[pivot]) {
+          let temp = nums[swapPtr];
+          nums[swapPtr] = nums[iterationPtr];
+          nums[iterationPtr] = temp;
+          swapPtr++;
+      }
+      iterationPtr++;
+  }
+
+  // switch pivot and swapPtr
+  let temp = nums[swapPtr];
+  nums[swapPtr] = nums[pivot];
+  nums[pivot] = temp;
+
+  // quickSort Left
+  quickSort(nums, start, swapPtr - 1)
+
+  // quickSort Right
+  quickSort(nums, swapPtr + 1, end)
+
+  return nums;
+}
+var sortArray = function(nums) {
+  return quickSort(nums, 0, nums.length - 1)
+};
+
+/**
+ * Solution 3 notes:
+ * Recursion
+ * 1. Find pivot (Use last element)
+ * 2. Create two pointers
+ *     a. one to iterate through the array
+ *     b. one pointer to save where to swap next
+ * 3. iterate through the array and swap any values that are less than or equal to the pivot
+ * 4. Swap the pivot and the swap pointer
+ * 5. quicksort left and quick sort right of the swap pointer.
+ */
