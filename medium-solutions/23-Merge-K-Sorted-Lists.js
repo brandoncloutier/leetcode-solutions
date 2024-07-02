@@ -52,5 +52,12 @@ var mergeKLists = function(lists) {
 
 /**
  * Solution notes:
- * What we are doing here is we are merging two subarrays at a time until we reduce it until we have one array. 
+ * What we are doing here is we are merging two sublinkedlists at a time until we reduce it until we have one linkedlist. 
+ * For merging the two sub linkedlists we are using the method of using a sentinel and a tail and just walking through both linked lists.
+ * Structure:
+ *      [[1, 4, 5], [1, 3, 4], [2, 4, 6], [2, 4, 7]]
+ *           \          /          \          /
+ *        [[1, 1, 3, 4, 4, 5], [2, 2, 4, 4, 6, 7]]
+ *                   \                /
+ *         [[1, 1, 2, 2, 3, 4, 4, 4, 4, 5, 6, 7]]
  */
